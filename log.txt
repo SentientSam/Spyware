@@ -1,0 +1,85 @@
+Project 2
+6/7/2019
+Cop 4530
+log.txt
+Samuel Lamb
+
+For project 2 I unfortunately got a very late start.
+
+However, to start I first copied all the files over from the cop4530p library and created my deliverable files within my project directory.
+I then began to work on the report.txt as advised within the project 2 section of the course organizer.
+
+compare.h was copied over from the library and then I altered it to fit the sort_spy.cpp file (changing class names, etc.)
+I also copied over gbsearch.h and altered that file
+
+using c4530 sort_spy and c4530 search_spy my files compiled and I began testing
+
+
+Runinng spy_sort.x and spy_search.x test:
+
+lamb@linprog4.cs.fsu.edu:~/cop4530/proj2> ranuint.x 5 0 woop
+Results stored in file woop
+  range: 0 .. 4294967294
+  count: 5
+lamb@linprog4.cs.fsu.edu:~/cop4530/proj2> sort_spy.x
+ ** command line arguments:
+     1: input filename (required)
+     2: output filename (required)
+     3: "fast" (optional) - omits Theta(n^2) sorts
+ ** try again
+lamb@linprog4.cs.fsu.edu:~/cop4530/proj2> sort_spy.x woop woopy
+
+ -woop----------------------------------------------
+
+ Input file name: woop
+            size: 5
+
+           algorithm     comp_count         n   n log n    n(n+1)/2
+           ---------     ----------       ---   -------    --------
+    g_selection_sort             15         5        11          15
+    g_insertion_sort              9         5        11          15
+         g_heap_sort             11         5        11          15
+          List::Sort              6         5        11          15
+
+ Process complete
+
+ This showed that in the instance of woop, insertion and list sort are better.
+
+
+
+ lamb@linprog4.cs.fsu.edu:~/cop4530/proj2> ranuint.x 100  0 woop
+Results stored in file woop
+  range: 0 .. 4294967294
+  count: 100
+lamb@linprog4.cs.fsu.edu:~/cop4530/proj2> sort_spy.x woop woopy
+
+ -woop----------------------------------------------
+
+ Input file name: woop
+            size: 100
+
+           algorithm     comp_count         n   n log n    n(n+1)/2
+           ---------     ----------       ---   -------    --------
+    g_selection_sort           5050       100       664        5050
+    g_insertion_sort           2846       100       664        5050
+         g_heap_sort           1046       100       664        5050
+          List::Sort            566       100       664        5050
+
+ Process complete
+
+This time my count was 100. List and heap sort worked better in this case
+
+
+entering search_spy_char.com1 into my search_spy.x I get
+
+           algorithm   min comps   avg comps   max comps   size  log size[ceiling]  trials
+           ---------   ---------   ---------   ---------   ----  --------           ------
+  fsu::g_lower_bound           4        4.73           5     25         5               26
+  fsu::g_upper_bound           4        4.69           5     25         5               26
+  alt::g_lower_bound           4        4.73           5     25         5               26
+  alt::g_upper_bound           4        4.69           5     25         5               26
+  seq::g_lower_bound           1       15.46          25     25         5               26
+  seq::g_upper_bound           1       16.38          25     25         5               26
+
+End search_spy
+
